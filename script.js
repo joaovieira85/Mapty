@@ -105,6 +105,10 @@ class App {
     }).addTo(this.#map);
 
     this.#map.on('click', this._showForm.bind(this));
+
+    this.#workouts.forEach(works => {
+      this._renderWorkoutMarker(works);
+    });
   }
 
   _showForm(mapE) {
