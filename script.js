@@ -73,6 +73,7 @@ class App {
   #workouts = [];
   constructor() {
     this._getPosition();
+    this._getlocalStorage();
     form.addEventListener('submit', this._newWorkout.bind(this));
 
     inputType.addEventListener('change', this._toggleElevation);
@@ -277,6 +278,18 @@ class App {
 
   _setLocalStorage() {
     localStorage.setItem('workouts', JSON.stringify(this.#workouts));
+  }
+
+  _getlocalStorage() {
+    const data = JSON.parse(localStorage.getItem('workouts'));
+
+    if (!data) return;
+
+    this.#workouts = data;
+
+    this.#workouts.forEach(works => {
+      this._renderWorkout(works);
+    });
   }
 }
 
