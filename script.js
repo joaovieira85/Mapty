@@ -182,6 +182,9 @@ class App {
 
     //Clear the input values
     this._hideForm();
+
+    //Set th workout to local storage
+    this._setLocalStorage();
   }
 
   _renderWorkoutMarker(workout) {
@@ -270,6 +273,10 @@ class App {
     });
 
     workout._click();
+  }
+
+  _setLocalStorage() {
+    localStorage.setItem('workouts', JSON.stringify(this.#workouts));
   }
 }
 
