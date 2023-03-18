@@ -11,7 +11,6 @@ const inputElevation = document.querySelector('.form__input--elevation');
 class Workout {
   date = new Date();
   id = (Date.now() + '').slice(-10);
-  clicks = 0;
 
   constructor(coords, distance, duration) {
     this.coords = coords;
@@ -27,10 +26,6 @@ class Workout {
     this.description = `${this.type[0].toUpperCase()}${this.type.slice(1)} on ${
       months[this.date.getMonth()]
     } ${this.date.getDate()}`;
-  }
-
-  _click() {
-    this.clicks++;
   }
 }
 
@@ -85,7 +80,7 @@ class App {
       navigator.geolocation.getCurrentPosition(
         this._loadMap.bind(this),
         function () {
-          console.log(alert('Don´t have acess to your localization'));
+          console.log(alert('Don`t have acess to your localization'));
         }
       );
     }
@@ -276,8 +271,6 @@ class App {
         duration: 1,
       },
     });
-
-    workout._click();
   }
 
   _setLocalStorage() {
@@ -294,6 +287,11 @@ class App {
     this.#workouts.forEach(works => {
       this._renderWorkout(works);
     });
+  }
+
+  reset() {
+    localStorage.removeItem('Workouts');
+    location.reload();
   }
 }
 
